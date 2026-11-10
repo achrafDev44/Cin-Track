@@ -3,7 +3,7 @@ const API_URL = "https://raw.githubusercontent.com/ouchad97/cinetrack-api/main/c
 export async function chargerDonnees() {
     try{
         const response = await fetch(API_URL);
-        if(response.ok === false){
+        if(!response.ok){
             throw new Error("erreur API");
         }
         const donnees = await response.json();
