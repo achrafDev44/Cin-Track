@@ -1,4 +1,5 @@
 import {renderPagination } from "./pagination.js";
+import { openModal } from "./modal.js";
 export function renderCards(donnees,page,size){
     if(!page){
         page = 1;
@@ -17,6 +18,14 @@ export function renderCards(donnees,page,size){
             <img src="${film.image}" alt="${film.title}">
         </div>    
     `}).join("");
+
+    grid.querySelectorAll("div").forEach((card,index)=>{
+        card.addEventListener("click",()=>{
+            const id=printSlice[index].id;
+            const item=donnees.find(film=>film.id===id);
+            openModal(item);
+        });
+    })
     renderPagination(donnees,page,size,(nouvellePage) =>{
         renderCards(donnees,nouvellePage,size);
     })
