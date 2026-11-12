@@ -9,7 +9,7 @@ async function initialiser() {
         renderCards(donnees);
 
         document.getElementById("search").addEventListener("input",handleFilter);
-        document.getElementById("filter").addEventListener("change",handleFilter);
+        document.getElementById("filter").addEventListener("change",handleFilter)
         
     }catch(error){
         console.log("Impossible de charger les données.")
