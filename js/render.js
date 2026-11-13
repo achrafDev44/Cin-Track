@@ -1,5 +1,6 @@
 import {renderPagination } from "./pagination.js";
 import { openModal } from "./modal.js";
+import { addFavorite } from "./favorites.js";
 export function renderCards(donnees,page,size){
     if(!page){
         page = 1;
@@ -14,12 +15,21 @@ export function renderCards(donnees,page,size){
     console.log(grid)
 
     grid.innerHTML = printSlice.map(film =>{ return `
-        <div>
+        <div class= "relative">
             <img src="${film.image}" alt="${film.title}">
+            <button class="favorite-btn absolute top-2 right-2  rounded-full">❤️</button>
         </div>    
     `}).join("");
 
-    grid.querySelectorAll("div").forEach((card,index)=>{
+    grid.querySelectorAll(".favorite-btn").forEach((button,index)=>{
+        button.addEventListener("click",(event)=>{
+            event.stopPropagation();
+            addFavorite(printSlice[index]);
+        })
+    });
+
+
+    grid.querySelectorAll(".relative").forEach((card,index)=>{
         card.addEventListener("click",()=>{
             const id=printSlice[index].id;
             const item=donnees.find(film=>film.id===id);
