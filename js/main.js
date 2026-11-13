@@ -16,6 +16,14 @@ async function initialiser() {
     }catch(error){
        console.error("Erreur détaillé :",error)
     }
+
+    const boutonFavoris=document.getElementById("favorites-mobile-btn")
+    const menuFavoris=document.getElementById("mobile-favorites-menu")
+
+    boutonFavoris.addEventListener("click",()=>{
+        menuFavoris.classList.toggle("hidden")
+      
+    })
 }
 initialiser();
 

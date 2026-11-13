@@ -12,12 +12,17 @@ export function addFavorite(item){
 export function renderFavorites(){
     const favs=getFavorites();
     const favoriteList=document.getElementById("favorites-list");
-    favoriteList.innerHTML=favs.map(film=>{
+    const mobileFavoriteList=document.getElementById("mobile-favorites-list")
+    const html=favs.map(film=>{
         return `
-            <li> ${film.title}</li>
-            <img src="${film.image}" alt="${film.title}">
-            <button class="remove-favorite bg-red-500" id="${film.id}">supprimer</button>`;
+            <li>
+                <img src="${film.image}" alt="${film.title}" class="w-16 lg:w-28 h-auto object-contain">
+                <p>${film.title}</p>
+                <button class="remove-favorite bg-red-500" id="${film.id}">supprimer</button>
+            </li>`;
     }).join("");
+    favoriteList.innerHTML=html
+    mobileFavoriteList.innerHTML=html
     const buttons=document.querySelectorAll(".remove-favorite");
     buttons.forEach(button=>{
         button.addEventListener("click",()=>{

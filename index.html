@@ -10,23 +10,31 @@
 <body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col">
 
    <header class="bg-gray-800 border-b border-gray-700 p-4">
-        <div class="flex items-center gap-3">
-            <img src="image/logo2.png" alt="Logo CinéTrack" class="w-12 h-12">
-            <h1 class="text-2xl font-bold text-red-500">CinéTrack</h1>
-            <img src="image/photo1.png" alt="mon page" class="w-12 h-12 rounded-full object-cover ml-auto">
+        <div class="relative flex items-center gap-3">
+            <img src="image/logo2.png" alt="Logo CinéTrack" class="w-10 h-10 sm:w-12 sm:h-12">
+            <h1 class="text-xl sm:text-2xl font-bold text-red-500">CinéTrack</h1>
+            <button id="favorites-mobile-btn" class="ml-auto lg:hidden">❤️</button>
+            <!-- menu mobile favoris -->
+             <div id="mobile-favorites-menu"
+                  class="hidden absolute right-0 top-full bg-gray-800 p-4 rounded-lg z-50">
+                  <h2>Mes favoris</h2>
+                  <ul id="mobile-favorites-list"></ul>
+             </div>
+
+            <img src="image/photo1.png" alt="mon page" class="w-10 h-10 rounded-full ml-0 lg:ml-auto">
         </div>
    </header>
     
-   <div class="flex flex-1 bg-red-500">
+   <div class="flex flex-col lg:flex-row flex-1">
 
-        <main class="flex-1 p-6">
+        <main class="flex-1 p-3 sm:p-6 min-w-0">
             <!-- recherche,filtre -->     
-            <div class="flex items-center gap-4 mb-6">
+            <div class="flex flex-col sm:flex-row items-center gap-4 mb-6">
 
                 <input type="text" id="search" placeholder="Rechercher un film ou une série..."
-                class="flex-1 p-4 rounded-xl bg-gray-800 text-white border border-gray-700">
+                class="w-full sm:flex-1 p-4 rounded-xl bg-gray-800 text-white border border-gray-700">
 
-                <select id="filter" class="p-4 rounded-xl bg-gray-800 text-white border border-gray-700">
+                <select id="filter" class="w-full sm:w-auto p-4 rounded-xl bg-gray-800 text-white border border-gray-700">
                     <option value="all">Tous</option>
                     <option value="film">Films</option>
                     <option value="series">Séries</option>
@@ -37,21 +45,21 @@
             <div id="error" class="hidden bg-red-600 text-white p-4 text-center rounded mb-4"></div>
 
             <!-- carte des filmes et series -->
-            <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+            <div id="grid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4"></div>
 
             <!-- pagination -->
             <div id="pagination" class="flex justify-center gap-2 mt-6"></div>
         </main>
 
         <!-- favoris -->
-        <div id="sidebar" class="w-64 bg-gray-800 p-4">
+        <div id="sidebar" class="hidden lg:block w-64 bg-gray-800 p-4">
             <h2 class="text-xl font-bold mb-4">Mes favoris</h2>
             <ul id="favorites-list" class="space-y-3"></ul>
         </div>   
    </div>
         <!-- modal -->
     <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-60 items-center justify-center" >
-        <div class="bg-gray-800 p-6 rounded-lg w-96">
+        <div class="bg-gray-800 p-4 rounded-lg w-full max-w-md mx-4">
             <button id="close-modal" class="float-right text-white text-xl bg-red-600 px-3 py-1 rounded">Fermer</button>
             <div id="modal-content" class="text-white"></div>
         </div>
